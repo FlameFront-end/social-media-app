@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import * as z from 'zod'
 
+import { createUserAccount } from '@/lib/appwrite/api.ts'
+
 import { Button } from '@/components/ui/button.tsx'
 import {
 	Form,
@@ -31,8 +33,10 @@ const SignUpForm: FC = () => {
 		resolver: zodResolver(signUpValidation)
 	})
 
-	const onSubmit = (values: z.infer<typeof signUpValidation>) => {
-		console.log(values)
+	const onSubmit = async (values: z.infer<typeof signUpValidation>) => {
+		const newUser = await createUserAccount(values)
+
+		console.log(newUser)
 	}
 
 	return (
@@ -92,7 +96,7 @@ const SignUpForm: FC = () => {
 						name='email'
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Username</FormLabel>
+								<FormLabel>Email</FormLabel>
 								<FormControl>
 									<Input
 										type='email'
