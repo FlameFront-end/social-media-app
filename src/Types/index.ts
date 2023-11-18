@@ -1,3 +1,14 @@
+import * as React from 'react'
+
+export interface IContextType {
+	user: IUser
+	isLoading: boolean
+	setUser: React.Dispatch<React.SetStateAction<IUser>>
+	isAuth: boolean
+	setIsAuth: React.Dispatch<React.SetStateAction<boolean>>
+	checkAuthUser: () => Promise<boolean>
+}
+
 export interface INavLink {
 	imgURL: string
 	route: string
