@@ -24,7 +24,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
 
-const SignupForm = () => {
+const SignUpForm = () => {
 	const { toast } = useToast()
 	const navigate = useNavigate()
 	const { checkAuthUser, isLoading: isUserLoading } = useUserContext()
@@ -39,13 +39,11 @@ const SignupForm = () => {
 		}
 	})
 
-	// Queries
 	const { mutateAsync: createUserAccount, isLoading: isCreatingAccount } =
 		useCreateUserAccount()
 	const { mutateAsync: signInAccount, isLoading: isSigningInUser } =
 		useSignInAccount()
 
-	// Handler
 	const handleSignup = async (user: z.infer<typeof signUpValidation>) => {
 		try {
 			const newUser = await createUserAccount(user)
@@ -182,4 +180,4 @@ const SignupForm = () => {
 	)
 }
 
-export default SignupForm
+export default SignUpForm
